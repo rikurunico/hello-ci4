@@ -28,6 +28,7 @@
                 <table class="table table-bordered table-striped">
                     <thead class="thead-dark">
                         <tr>
+                            <th>No</th>
                             <th>TITLE</th>
                             <th>CONTENT</th>
                             <th>AKSI</th>
@@ -37,6 +38,7 @@
                         <?php foreach ($posts as $key => $post) : ?>
 
                             <tr>
+                                <td><?php echo $key + 1 ?></td>
                                 <td><?php echo $post['title'] ?></td>
                                 <td><?php echo $post['content'] ?></td>
                                 <td class="text-center">
