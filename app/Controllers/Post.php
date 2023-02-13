@@ -52,11 +52,11 @@ class Post extends Controller
         //validasi
         if (!$this->validate([
             'title' => [
-                'rules' => 'required|alpha_numeric_space',
+                'rules' => 'required|alpha_numeric_space|min_length[3]',
                 'label' => 'Judul Post',
             ],
             'content' => [
-                'rules' => 'required',
+                'rules' => 'required|min_length[10]',
                 'label' => 'Konten Post',
             ],
         ])) {
@@ -92,17 +92,18 @@ class Post extends Controller
         //validasi
         if (!$this->validate([
             'title' => [
-                'rules' => 'required|alpha_numeric_space',
+                'rules' => 'required|alpha_numeric_space|min_length[3]',
                 'label' => 'Judul Post',
             ],
             'content' => [
-                'rules' => 'required',
+                'rules' => 'required|min_length[10]',
                 'label' => 'Konten Post',
             ],
         ])) {
             //render view with error validation message
             return view('post-edit', [
-                'validation' => $this->validator
+                'validation' => $this->validator,
+                'post'       => $this->postModel->find($id), //pass post data to view for repopulate form input value
             ]);
         }
 

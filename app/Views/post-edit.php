@@ -17,7 +17,7 @@
             <div class="col-md-12">
                 <?php if (isset($validation)) { ?>
                     <div class="alert alert-danger" role="alert">
-                        <?php echo $validation->listErrors() ?>
+                        <?php echo \Config\Services::validation()->listErrors() ?>
                     </div>
                 <?php } ?>
                 <div class="card">

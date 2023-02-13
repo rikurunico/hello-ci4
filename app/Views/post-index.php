@@ -25,32 +25,36 @@
                 <?php endif ?>
 
                 <a href="<?php echo base_url('post/create') ?>" class="btn btn-md btn-success mb-3">TAMBAH DATA</a>
-                <table class="table table-bordered table-striped">
-                    <thead class="thead-dark">
+                <table class="table">
+                    <thead>
                         <tr>
                             <th>No</th>
-                            <th>TITLE</th>
-                            <th>CONTENT</th>
-                            <th>AKSI</th>
+                            <th>Judul</th>
+                            <th>Konten</th>
+                            <th class="text-center">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($posts as $key => $post) : ?>
-
+                        <?php if (empty($posts)) : ?>
                             <tr>
-                                <td><?php echo $key + 1 ?></td>
-                                <td><?php echo $post['title'] ?></td>
-                                <td><?php echo $post['content'] ?></td>
-                                <td class="text-center">
-                                    <a href="<?php echo base_url('post/edit/' . $post['id']) ?>" class="btn btn-sm btn-primary">EDIT</a>
-                                    <form action="<?php echo base_url('post/delete/' . $post['id']) ?>" method="post" style="display: inline;">
-                                        <input type="hidden" name="_method" value="DELETE">
-                                        <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
-                                    </form>
-                                </td>
+                                <td colspan="4" class="text-center">Data tidak ada</td>
                             </tr>
-
-                        <?php endforeach ?>
+                        <?php else : ?>
+                            <?php foreach ($posts as $key => $post) : ?>
+                                <tr>
+                                    <td><?php echo $key + 1 ?></td>
+                                    <td><?php echo $post['title'] ?></td>
+                                    <td><?php echo $post['content'] ?></td>
+                                    <td class="text-center">
+                                        <a href="<?php echo base_url('post/edit/' . $post['id']) ?>" class="btn btn-sm btn-primary">EDIT</a>
+                                        <form action="<?php echo base_url('post/delete/' . $post['id']) ?>" method="post" style="display: inline;">
+                                            <input type="hidden" name="_method" value="DELETE">
+                                            <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            <?php endforeach ?>
+                        <?php endif ?>
                     </tbody>
                 </table>
                 <?php echo $pager->links('post', 'bootstrap_pagination') ?>
